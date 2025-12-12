@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.4 (Dynamic Island)</title>
+    <title>Henry's Alpha Station V6.5</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -25,7 +25,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* 增加顶部内边距，因为灵动岛下移了 */
+            /* 顶部留白给灵动岛 */
             padding-top: 100px;
             overflow-x: hidden;
             overflow-y: auto; 
@@ -36,26 +36,25 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
-        /* --- 1. 顶部灵动岛导航 (重大升级) --- */
+        /* --- 1. 顶部灵动岛导航 --- */
         .navbar {
             position: fixed;
-            top: 20px; /* 向下挪动 */
+            top: 20px; 
             left: 50%;
-            transform: translateX(-50%); /* 居中 */
-            width: 92%; /* 不占满全屏，留出悬浮感 */
+            transform: translateX(-50%);
+            width: 92%; 
             max-width: 1400px;
             height: 64px;
-            /* 灵动岛样式：深黑磨砂 + 强阴影 */
             background: rgba(20, 20, 24, 0.95); 
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 40px; /* 像灵动岛一样的圆角 */
+            border-radius: 40px; 
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6); /* 悬浮阴影 */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
         }
 
         .nav-brand { 
@@ -66,14 +65,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap; /* 防止换行 */
         }
         
         .nav-links { display: flex; gap: 8px; }
         
-        /* 按钮样式优化：增加对比度，防止混淆 */
         .nav-btn {
-            background: #2a2a2e; /* 深灰底色 */
-            color: #fff; /* 亮白文字 */
+            background: #2a2a2e; 
+            color: #fff; 
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 12px;
@@ -81,6 +80,7 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.05);
             font-weight: 700;
+            white-space: nowrap; /* 防止按钮文字换行 */
         }
         .nav-btn:hover { 
             background: var(--accent-color); 
@@ -153,7 +153,6 @@
             font-size: 13px;
             color: #888;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            /* 保持数字最新 */
         }
 
         .clock-section { text-align: center; margin-bottom: 40px; }
@@ -177,7 +176,6 @@
             opacity: 0.9;
         }
 
-        /* 新增：可视化倒计时样式 */
         #refresh-timer {
             font-family: 'Courier New', monospace;
             color: #555;
@@ -322,7 +320,7 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.4
+        <span style="color:var(--accent-color)">ALPHA</span> V6.5
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
