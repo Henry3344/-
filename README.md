@@ -4,7 +4,6 @@
 
 **Henry's Alpha Station** 是一个专为捕捉高波动、高回报（Alpha）机会而设计的单页美股/加密货币监控看板。它采用极简的深色赛博朋克风格，集成了 TradingView 实时图表组件，旨在提供最纯粹的行情观察体验。
 
-![Dashboard Screenshot](https://via.placeholder.com/800x400?text=Dashboard+Screenshot+Here)
 
 ## ✨ 核心特性
 
