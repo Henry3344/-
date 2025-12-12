@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.8</title>
+    <title>Henry's Alpha Station V7.0</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -35,7 +35,7 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
-        /* --- 1. 顶部灵动岛导航 (紧凑横向版) --- */
+        /* --- 1. 顶部灵动岛导航 (紧凑横向版 - 可滚动) --- */
         .navbar {
             position: fixed;
             top: 20px; 
@@ -68,7 +68,7 @@
             color: #fff; 
             display: flex;
             align-items: center;
-            margin-right: 10px; 
+            margin-right: 15px; 
             flex-shrink: 0; 
         }
         
@@ -173,7 +173,6 @@
             text-shadow: 0 0 25px rgba(41, 98, 255, 0.6);
             letter-spacing: -2px;
             line-height: 1.1;
-            /* 确保内容垂直居中对齐 */
             display: flex;
             justify-content: center;
             align-items: baseline;
@@ -299,6 +298,7 @@
         .tag-neon-purple { background: rgba(123, 31, 162, 0.15); border-color: rgba(123, 31, 162, 0.4); color: #ea80fc; box-shadow: 0 0 15px rgba(123, 31, 162, 0.1); }
         .tag-neon-gold { background: rgba(255, 179, 0, 0.15); border-color: rgba(255, 179, 0, 0.4); color: #ffe57f; box-shadow: 0 0 15px rgba(255, 179, 0, 0.1); }
         .tag-neon-danger { background: rgba(255, 61, 0, 0.2); border-color: rgba(255, 61, 0, 0.6); color: #ff9e80; box-shadow: 0 0 15px rgba(255, 61, 0, 0.2); animation: pulse 2s infinite; }
+        .tag-neon-green { background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.4); color: #69f0ae; box-shadow: 0 0 15px rgba(0, 230, 118, 0.1); }
 
         @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; border-color: #ff3d00; } 100% { opacity: 0.8; } }
 
@@ -338,14 +338,14 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        <span style="color:var(--accent-color)">ALPHA</span> V6.8
+        <span style="color:var(--accent-color)">ALPHA</span> V7.0
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
         <a href="#sec-risk" class="nav-btn" style="color:#ff9e80">🔥 搏杀</a>
-        <a href="#sec-leverage" class="nav-btn" style="color:#ff8a80">🎰 杠杆</a>
+        <a href="#sec-ai" class="nav-btn" style="color:#82b1ff">🤖 AI基建</a>
         <a href="#sec-crypto" class="nav-btn" style="color:#ffe57f">🪙 币圈</a>
-        <a href="#sec-tech" class="nav-btn">🚀 科技</a>
+        <a href="#sec-bio" class="nav-btn" style="color:#69f0ae">🧬 医药</a>
     </div>
 </nav>
 
@@ -402,14 +402,14 @@
         <div id="sec-space" class="section-title">🌌 太空经济 (Space)<div class="section-line"></div></div>
         <div class="stock-grid">
             <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">ASTS 卫星</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ASTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ASTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
-            <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-blue">RKLB 争二</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:RKLB","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:RKLB","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">ASTS 卫星</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ASTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ASTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
             <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-blue">LUNR 登月</div></div>
@@ -421,6 +421,11 @@
         <div id="sec-risk" class="section-title">🔥 高胜赔博弈 (High Risk High Reward)<div class="section-line"></div></div>
         <div class="stock-grid">
             <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-danger">TNXP 仙股</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:TNXP","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:TNXP","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-danger">SMCI 暴走</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:SMCI","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:SMCI","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
@@ -431,28 +436,14 @@
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:TSLA","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
             <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-danger">UPST 轧空</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:UPST","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:UPST","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-blue">APP 妖股</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:APP","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:APP","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
-        </div>
-
-        <div id="sec-quantum" class="section-title">⚛️ 量子计算 (Quantum)<div class="section-line"></div></div>
-        <div class="stock-grid">
-            <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">IONQ 龙头</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:IONQ","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:IONQ","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
-            <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">QBTS D-Wave</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:QBTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:QBTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
-             <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">OKLO 核能AI</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:OKLO","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:OKLO","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
         </div>
 
@@ -487,19 +478,101 @@
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:CLSK","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:CLSK","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-gold">RIOT 矿工</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:RIOT","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:RIOT","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-gold">COIN 交易所</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:COIN","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:COIN","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
         </div>
 
-        <div id="sec-tech" class="section-title">🚀 热门科技 (Tech)<div class="section-line"></div></div>
+        <div id="sec-ai" class="section-title">🤖 AI 基础设施与自动化 (AI & Infra)<div class="section-line"></div></div>
         <div class="stock-grid">
             <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-blue">NVDA 核心</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:NVDA","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:NVDA","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
-            <div class="stock-card">
+             <div class="stock-card">
                 <div class="card-header-floating"><div class="modern-badge tag-neon-blue">PLTR 大数据</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:PLTR","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:PLTR","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">MU 存储芯</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:MU","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:MU","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">SOUN 语音AI</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:SOUN","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:SOUN","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">ALAB 连接芯</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ALAB","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ALAB","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+             <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">SERV 机器人</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:SERV","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:SERV","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+        </div>
+
+        <div id="sec-quantum" class="section-title">⚛️ 量子计算 (Quantum)<div class="section-line"></div></div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">IONQ 龙头</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:IONQ","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:IONQ","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">QBTS D-Wave</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:QBTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:QBTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+             <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-purple">OKLO 核能AI</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:OKLO","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:OKLO","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+        </div>
+
+        <div id="sec-bio" class="section-title">🧬 生物科技 Alpha (Biotech)<div class="section-line"></div></div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-green">WVE RNA编辑</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:WVE","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:WVE","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-green">ALNY 核心</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ALNY","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ALNY","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-green">VKTX 减肥药</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:VKTX","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:VKTX","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+        </div>
+
+        <div id="sec-cycle" class="section-title">🏭 周期与复苏 (Cyclical & Recovery)<div class="section-line"></div></div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">AAL 航空</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:AAL","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:AAL","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">MGA 汽车</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:MGA","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:MGA","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
         </div>
 
