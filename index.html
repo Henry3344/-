@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.2 (Mobile Flow)</title>
+    <title>Henry's Alpha Station V6.3 (Auto-Refresh)</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -26,7 +26,7 @@
             margin: 0;
             padding: 0;
             padding-top: 60px;
-            /* 改动1：恢复网页默认滚动，去除hidden */
+            /* 保持网页默认滚动 (Flow Mode) */
             overflow-x: hidden;
             overflow-y: auto; 
         }
@@ -79,7 +79,7 @@
             box-shadow: 0 0 15px rgba(41, 98, 255, 0.4);
         }
 
-        /* --- 2. 主布局 (改动重点) --- */
+        /* --- 2. 主布局 --- */
         .main-layout {
             display: grid;
             grid-template-columns: 360px 1fr;
@@ -87,17 +87,17 @@
             max-width: 2000px;
             margin: 0 auto;
             padding: 20px;
-            /* 改动2：移除固定高度，允许页面自然生长 */
+            /* 保持自然高度 */
             height: auto; 
             min-height: calc(100vh - 60px);
         }
 
-        /* 左侧侧边栏 (改动重点) */
+        /* 左侧侧边栏 */
         .sidebar-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            /* 改动3：移除内部滚动条和高度限制 */
+            /* 保持无滚动条 */
             height: auto; 
             overflow: visible;
         }
@@ -124,9 +124,9 @@
             align-items: center;
         }
 
-        /* 右侧仪表盘 (改动重点) */
+        /* 右侧仪表盘 */
         .dashboard-container {
-            /* 改动4：移除内部滚动条和高度限制 */
+            /* 保持无滚动条 */
             height: auto;
             overflow: visible;
             padding-bottom: 50px;
@@ -267,7 +267,6 @@
         .tag-neon-red { background: rgba(242, 54, 69, 0.15); border-color: rgba(242, 54, 69, 0.4); color: #ff8a80; box-shadow: 0 0 15px rgba(242, 54, 69, 0.1); }
         .tag-neon-purple { background: rgba(123, 31, 162, 0.15); border-color: rgba(123, 31, 162, 0.4); color: #ea80fc; box-shadow: 0 0 15px rgba(123, 31, 162, 0.1); }
         .tag-neon-gold { background: rgba(255, 179, 0, 0.15); border-color: rgba(255, 179, 0, 0.4); color: #ffe57f; box-shadow: 0 0 15px rgba(255, 179, 0, 0.1); }
-        
         .tag-neon-danger { background: rgba(255, 61, 0, 0.2); border-color: rgba(255, 61, 0, 0.6); color: #ff9e80; box-shadow: 0 0 15px rgba(255, 61, 0, 0.2); animation: pulse 2s infinite; }
 
         @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; border-color: #ff3d00; } 100% { opacity: 0.8; } }
@@ -288,7 +287,7 @@
 
         @media (max-width: 1200px) {
             .main-layout { 
-                /* 改动5：移动端改为单列流式布局，而非Grid */
+                /* 保持单列流式布局 */
                 display: flex; 
                 flex-direction: column; 
             }
@@ -306,7 +305,7 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.2
+        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.3
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
@@ -491,8 +490,14 @@
         document.getElementById('clock-date').textContent = `${dateString} | ${days[now.getDay()]} | ${timeZoneName}`;
     }
     
+    // 启动时钟
     setInterval(updateClock, 1000);
     updateClock();
+
+    // 启动自动刷新 (600,000 毫秒 = 10 分钟)
+    setTimeout(function() {
+        window.location.reload();
+    }, 600000);
 </script>
 
 </body>
