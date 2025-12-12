@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.6</title>
+    <title>Henry's Alpha Station V6.7</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -25,8 +25,8 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* 关键修改：增加顶部留白，因为现在的灵动岛变高了 */
-            padding-top: 180px; 
+            /* 恢复较小的顶部留白，因为灵动岛变回单行了 */
+            padding-top: 100px; 
             overflow-x: hidden;
             overflow-y: auto; 
         }
@@ -36,70 +36,70 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
-        /* --- 1. 顶部灵动岛导航 (垂直布局版) --- */
+        /* --- 1. 顶部灵动岛导航 (紧凑横向版) --- */
         .navbar {
             position: fixed;
-            top: 15px; 
+            top: 20px; 
             left: 50%;
             transform: translateX(-50%);
-            width: 92%; 
-            max-width: 600px; /* 限制最大宽度，让它在电脑上也保持紧凑 */
-            /* 关键修改：高度自动，不再固定 */
-            height: auto; 
+            /* 宽度设置：电脑端限制宽度，手机端撑满96% */
+            width: 96%; 
+            max-width: 1200px;
+            height: 56px; /* 高度进一步压缩，更精致 */
             background: rgba(20, 20, 24, 0.95); 
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 30px; 
+            border-radius: 50px; /* 完全胶囊圆角 */
             z-index: 9999;
             display: flex;
-            /* 关键修改：改为垂直排列 */
-            flex-direction: column; 
             align-items: center;
-            justify-content: center;
-            padding: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
-            gap: 12px; /* Logo和按钮之间的间距 */
+            justify-content: space-between; /* Logo左，按钮右 */
+            padding: 0 15px; /* 减小内边距 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            
+            /* 关键：允许横向滚动但隐藏滚动条，保证绝对不换行 */
+            overflow-x: auto; 
+            overflow-y: hidden;
+            white-space: nowrap; /* 强制不换行 */
+            -webkit-overflow-scrolling: touch; /* iOS丝滑滚动 */
         }
+
+        /* 隐藏灵动岛的滚动条 */
+        .navbar::-webkit-scrollbar { display: none; }
 
         .nav-brand { 
             font-weight: 900; 
-            font-size: 18px; 
+            font-size: 16px; /* 稍微调小Logo */
             color: #fff; 
-            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            white-space: nowrap;
+            margin-right: 10px; /* Logo与按钮的最小间距 */
+            flex-shrink: 0; /* 防止Logo被挤扁 */
         }
         
         .nav-links { 
             display: flex; 
-            /* 关键修改：允许换行，这样按钮多的时候会自动折行显示 */
-            flex-wrap: wrap; 
-            justify-content: center;
-            gap: 8px; 
-            width: 100%;
+            gap: 5px; /* 极紧凑间距 */
+            align-items: center;
         }
         
         .nav-btn {
-            background: #2a2a2e; 
-            color: #fff; 
-            padding: 8px 16px;
-            border-radius: 15px;
-            font-size: 12px;
+            background: rgba(255,255,255,0.08); 
+            color: #ccc; 
+            /* 极限压缩按钮内边距 */
+            padding: 6px 12px; 
+            border-radius: 20px;
+            font-size: 11px; /* 小号字体 */
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-            font-weight: 700;
-            white-space: nowrap;
-            /* 手机上让按钮稍微胖一点，好点按 */
-            flex-grow: 1; 
-            text-align: center;
+            border: 1px solid transparent;
+            font-weight: 600;
+            white-space: nowrap; /* 按钮文字不换行 */
+            flex-shrink: 0; /* 防止按钮被挤扁 */
         }
         .nav-btn:hover { 
             background: var(--accent-color); 
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            color: #fff;
         }
 
         /* --- 2. 主布局 --- */
@@ -111,7 +111,7 @@
             margin: 0 auto;
             padding: 20px;
             height: auto; 
-            min-height: calc(100vh - 180px);
+            min-height: calc(100vh - 100px);
         }
 
         /* 左侧侧边栏 */
@@ -317,12 +317,21 @@
             flex-direction: column;
         }
 
-        @media (max-width: 1200px) {
+        /* 移动端专属优化 */
+        @media (max-width: 600px) {
             .main-layout { display: flex; flex-direction: column; }
             .sidebar-container { margin-bottom: 30px; }
             .panel-card { margin-bottom: 20px; }
-            /* 移动端细微调整 */
-            .navbar { width: 95%; }
+            
+            /* 手机端进一步压缩灵动岛，确保横着能放下 */
+            .navbar { 
+                padding: 0 10px; 
+                width: 95%;
+                height: 50px; 
+            }
+            .nav-brand { font-size: 14px; margin-right: 5px; }
+            .nav-btn { padding: 5px 8px; font-size: 11px; }
+            .nav-links { gap: 3px; }
         }
 
     </style>
@@ -331,7 +340,7 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        <span style="color:var(--accent-color)">ALPHA</span> V6.6
+        <span style="color:var(--accent-color)">ALPHA</span> V6.7
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
