@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.7</title>
+    <title>Henry's Alpha Station V6.8</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -25,7 +25,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* 恢复较小的顶部留白，因为灵动岛变回单行了 */
             padding-top: 100px; 
             overflow-x: hidden;
             overflow-y: auto; 
@@ -42,60 +41,55 @@
             top: 20px; 
             left: 50%;
             transform: translateX(-50%);
-            /* 宽度设置：电脑端限制宽度，手机端撑满96% */
             width: 96%; 
             max-width: 1200px;
-            height: 56px; /* 高度进一步压缩，更精致 */
+            height: 56px; 
             background: rgba(20, 20, 24, 0.95); 
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50px; /* 完全胶囊圆角 */
+            border-radius: 50px; 
             z-index: 9999;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Logo左，按钮右 */
-            padding: 0 15px; /* 减小内边距 */
+            justify-content: space-between; 
+            padding: 0 15px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            
-            /* 关键：允许横向滚动但隐藏滚动条，保证绝对不换行 */
             overflow-x: auto; 
             overflow-y: hidden;
-            white-space: nowrap; /* 强制不换行 */
-            -webkit-overflow-scrolling: touch; /* iOS丝滑滚动 */
+            white-space: nowrap; 
+            -webkit-overflow-scrolling: touch; 
         }
 
-        /* 隐藏灵动岛的滚动条 */
         .navbar::-webkit-scrollbar { display: none; }
 
         .nav-brand { 
             font-weight: 900; 
-            font-size: 16px; /* 稍微调小Logo */
+            font-size: 16px; 
             color: #fff; 
             display: flex;
             align-items: center;
-            margin-right: 10px; /* Logo与按钮的最小间距 */
-            flex-shrink: 0; /* 防止Logo被挤扁 */
+            margin-right: 10px; 
+            flex-shrink: 0; 
         }
         
         .nav-links { 
             display: flex; 
-            gap: 5px; /* 极紧凑间距 */
+            gap: 5px; 
             align-items: center;
         }
         
         .nav-btn {
             background: rgba(255,255,255,0.08); 
             color: #ccc; 
-            /* 极限压缩按钮内边距 */
             padding: 6px 12px; 
             border-radius: 20px;
-            font-size: 11px; /* 小号字体 */
+            font-size: 11px; 
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid transparent;
             font-weight: 600;
-            white-space: nowrap; /* 按钮文字不换行 */
-            flex-shrink: 0; /* 防止按钮被挤扁 */
+            white-space: nowrap; 
+            flex-shrink: 0; 
         }
         .nav-btn:hover { 
             background: var(--accent-color); 
@@ -179,6 +173,11 @@
             text-shadow: 0 0 25px rgba(41, 98, 255, 0.6);
             letter-spacing: -2px;
             line-height: 1.1;
+            /* 确保内容垂直居中对齐 */
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 10px;
         }
         #clock-date { 
             color: var(--accent-color); 
@@ -323,7 +322,6 @@
             .sidebar-container { margin-bottom: 30px; }
             .panel-card { margin-bottom: 20px; }
             
-            /* 手机端进一步压缩灵动岛，确保横着能放下 */
             .navbar { 
                 padding: 0 10px; 
                 width: 95%;
@@ -340,7 +338,7 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        <span style="color:var(--accent-color)">ALPHA</span> V6.7
+        <span style="color:var(--accent-color)">ALPHA</span> V6.8
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
@@ -372,7 +370,7 @@
     <div class="dashboard-container">
         
         <div class="clock-section">
-            <div id="clock-time">--:--</div>
+            <div id="clock-time">--:--:--</div>
             <div id="clock-date">SYSTEM READY</div>
             <div id="refresh-timer">NEXT UPDATE: 10:00</div>
         </div>
@@ -516,21 +514,33 @@
         const now = new Date();
         const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         
-        // 时钟
-        const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+        // 分离时间与AM/PM
+        let timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+        // 查找最后一个空格，通常分隔 AM/PM
+        let lastSpaceIndex = timeString.lastIndexOf(' ');
+        
+        let displayHtml = '';
+        if (lastSpaceIndex !== -1) {
+            let mainTime = timeString.substring(0, lastSpaceIndex);
+            let period = timeString.substring(lastSpaceIndex + 1);
+            // 使用 span 缩小 PM/AM
+            displayHtml = `${mainTime}<span style="font-size: 0.4em; margin-left:8px;">${period}</span>`;
+        } else {
+            displayHtml = timeString;
+        }
+
         const dateString = now.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
         const timeZoneName = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' })
             .formatToParts(now)
             .find(part => part.type === 'timeZoneName')
             .value;
 
-        document.getElementById('clock-time').textContent = timeString;
+        document.getElementById('clock-time').innerHTML = displayHtml;
         document.getElementById('clock-date').textContent = `${dateString} | ${days[now.getDay()]} | ${timeZoneName}`;
 
         // 倒计时
         let m = Math.floor(secondsLeft / 60);
         let s = secondsLeft % 60;
-        // 补零
         s = s < 10 ? '0' + s : s;
         m = m < 10 ? '0' + m : m;
         
@@ -539,14 +549,12 @@
         if (secondsLeft > 0) {
             secondsLeft--;
         } else {
-            // 时间到，刷新页面
             window.location.reload();
         }
     }
     
-    // 每秒执行一次
     setInterval(updateClockAndTimer, 1000);
-    updateClockAndTimer(); // 初始化执行
+    updateClockAndTimer(); 
 </script>
 
 </body>
