@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6.1</title>
+    <title>Henry's Alpha Station V6.2 (Mobile Flow)</title>
     <style>
         :root {
             --bg-color: #050505;
@@ -26,7 +26,9 @@
             margin: 0;
             padding: 0;
             padding-top: 60px;
+            /* 改动1：恢复网页默认滚动，去除hidden */
             overflow-x: hidden;
+            overflow-y: auto; 
         }
 
         ::-webkit-scrollbar { width: 4px; height: 4px; }
@@ -77,7 +79,7 @@
             box-shadow: 0 0 15px rgba(41, 98, 255, 0.4);
         }
 
-        /* --- 2. 主布局 --- */
+        /* --- 2. 主布局 (改动重点) --- */
         .main-layout {
             display: grid;
             grid-template-columns: 360px 1fr;
@@ -85,17 +87,19 @@
             max-width: 2000px;
             margin: 0 auto;
             padding: 20px;
-            height: calc(100vh - 60px);
+            /* 改动2：移除固定高度，允许页面自然生长 */
+            height: auto; 
+            min-height: calc(100vh - 60px);
         }
 
-        /* 左侧侧边栏 (已优化：移除日历，拉长新闻) */
+        /* 左侧侧边栏 (改动重点) */
         .sidebar-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            height: 100%; 
-            overflow: hidden; /* 防止双滚动条 */
-            padding-right: 5px;
+            /* 改动3：移除内部滚动条和高度限制 */
+            height: auto; 
+            overflow: visible;
         }
 
         .panel-card {
@@ -120,12 +124,12 @@
             align-items: center;
         }
 
-        /* 右侧仪表盘 */
+        /* 右侧仪表盘 (改动重点) */
         .dashboard-container {
-            height: 100%;
-            overflow-y: auto;
-            padding-right: 5px;
-            padding-bottom: 100px;
+            /* 改动4：移除内部滚动条和高度限制 */
+            height: auto;
+            overflow: visible;
+            padding-bottom: 50px;
         }
 
         /* --- 3. 宏观与时钟 --- */
@@ -264,7 +268,6 @@
         .tag-neon-purple { background: rgba(123, 31, 162, 0.15); border-color: rgba(123, 31, 162, 0.4); color: #ea80fc; box-shadow: 0 0 15px rgba(123, 31, 162, 0.1); }
         .tag-neon-gold { background: rgba(255, 179, 0, 0.15); border-color: rgba(255, 179, 0, 0.4); color: #ffe57f; box-shadow: 0 0 15px rgba(255, 179, 0, 0.1); }
         
-        /* 新增：危险警告色 */
         .tag-neon-danger { background: rgba(255, 61, 0, 0.2); border-color: rgba(255, 61, 0, 0.6); color: #ff9e80; box-shadow: 0 0 15px rgba(255, 61, 0, 0.2); animation: pulse 2s infinite; }
 
         @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; border-color: #ff3d00; } 100% { opacity: 0.8; } }
@@ -284,9 +287,17 @@
         }
 
         @media (max-width: 1200px) {
-            .main-layout { grid-template-columns: 1fr; display: block; }
-            .sidebar-container { height: 600px; margin-bottom: 30px; overflow-y: visible; }
-            .panel-card { margin-bottom: 20px; }
+            .main-layout { 
+                /* 改动5：移动端改为单列流式布局，而非Grid */
+                display: flex; 
+                flex-direction: column; 
+            }
+            .sidebar-container { 
+                margin-bottom: 30px; 
+            }
+            .panel-card { 
+                margin-bottom: 20px; 
+            }
         }
 
     </style>
@@ -295,7 +306,7 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.1
+        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.2
     </div>
     <div class="nav-links">
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
@@ -309,7 +320,7 @@
 <div class="main-layout">
     
     <div class="sidebar-container">
-        <div class="panel-card" style="flex: 1; min-height: 500px;">
+        <div class="panel-card" style="height: 600px; flex-shrink: 0;">
             <div class="panel-header">📰 市场情报 (NASDAQ 100)</div>
             <div class="tradingview-widget-container" style="height:100%;width:100%">
                 <div class="tradingview-widget-container__widget"></div>
