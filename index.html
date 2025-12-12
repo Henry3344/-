@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry's Alpha Station V6 (Ultimate)</title>
+    <title>Henry's Alpha Station V6.1</title>
     <style>
         :root {
             --bg-color: #050505;
-            --card-bg: #101012; /* 更深邃的黑 */
+            --card-bg: #101012; 
             --sidebar-bg: #161618;
             --text-main: #e0e0e0;
             --accent-color: #2962ff;
@@ -29,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* 滚动条隐形化设计 */
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
@@ -42,8 +41,8 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background: rgba(10, 10, 12, 0.85); /* 高透 */
-            backdrop-filter: blur(15px); /* 磨砂质感 */
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.08);
             z-index: 9999;
             display: flex;
@@ -65,7 +64,7 @@
             background: rgba(255,255,255,0.05);
             color: #aaa;
             padding: 6px 16px;
-            border-radius: 20px; /* 胶囊圆角 */
+            border-radius: 20px;
             font-size: 12px;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -89,13 +88,13 @@
             height: calc(100vh - 60px);
         }
 
-        /* 左侧侧边栏 */
+        /* 左侧侧边栏 (已优化：移除日历，拉长新闻) */
         .sidebar-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
             height: 100%; 
-            overflow-y: auto;
+            overflow: hidden; /* 防止双滚动条 */
             padding-right: 5px;
         }
 
@@ -129,7 +128,7 @@
             padding-bottom: 100px;
         }
 
-        /* --- 3. 宏观条与时钟 (已修改高亮) --- */
+        /* --- 3. 宏观与时钟 --- */
         .macro-strip {
             display: flex;
             gap: 15px;
@@ -148,27 +147,26 @@
 
         .clock-section { text-align: center; margin-bottom: 40px; }
         
-        /* 修改后的时钟样式 */
         #clock-time {
             font-family: 'Courier New', monospace;
-            font-size: 72px; /* 增大字号 */
+            font-size: 72px;
             font-weight: 900;
-            color: #ffffff; /* 纯白，去除原本的灰色渐变 */
-            text-shadow: 0 0 25px rgba(41, 98, 255, 0.6); /* 增加蓝色科技辉光 */
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(41, 98, 255, 0.6);
             letter-spacing: -2px;
             line-height: 1.1;
         }
         #clock-date { 
             color: var(--accent-color); 
-            font-size: 16px; /* 稍微增大日期 */
+            font-size: 16px;
             margin-top: 5px; 
             font-weight: 700; 
-            letter-spacing: 4px; /* 增加间距 */
+            letter-spacing: 4px;
             text-transform: uppercase;
             opacity: 0.9;
         }
 
-        /* --- 4. 策略警告 (清晰的中立区) --- */
+        /* --- 4. 策略网格 --- */
         .strategy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -192,7 +190,7 @@
         .st-buy h3 { color: #448aff; }
         
         .st-neutral { border-top: 4px solid var(--neutral-color); }
-        .st-neutral h3 { color: #cfd8dc; text-shadow: 0 0 10px rgba(255,255,255,0.2); } /* 银色发光 */
+        .st-neutral h3 { color: #cfd8dc; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 
         .st-sell { border-top: 4px solid var(--danger-color); }
         .st-sell h3 { color: #ff5252; }
@@ -200,7 +198,7 @@
         .st-pdt { border: 1px solid var(--warn-color); background: rgba(255, 152, 0, 0.05); grid-column: 1 / -1; text-align: center; }
         .st-pdt h3 { justify-content: center; color: var(--warn-color); }
 
-        /* --- 5. 股票卡片 (美学重构) --- */
+        /* --- 5. 股票卡片 --- */
         .section-title {
             font-size: 24px;
             color: #fff;
@@ -213,7 +211,6 @@
 
         .stock-grid {
             display: grid;
-            /* 增加最小宽度到 360px，确保仪表盘不缩放 */
             grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); 
             gap: 30px;
         }
@@ -222,7 +219,6 @@
             background: var(--card-bg);
             border-radius: 20px;
             border: 1px solid #222;
-            /* 增加高度到 600px，确保容纳大表盘 */
             height: 600px; 
             display: flex;
             flex-direction: column;
@@ -237,7 +233,6 @@
             border-color: #444; 
         }
 
-        /* --- 全新美化的标签 (Glassmorphism) --- */
         .card-header-floating {
             position: absolute;
             top: 15px;
@@ -251,8 +246,8 @@
             font-size: 11px;
             font-weight: 700;
             padding: 6px 12px;
-            border-radius: 30px; /* 胶囊形状 */
-            backdrop-filter: blur(8px); /* 磨砂 */
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -263,51 +258,34 @@
             gap: 5px;
         }
 
-        /* 标签配色方案 - 霓虹风格 */
-        .tag-neon-blue { 
-            background: rgba(41, 98, 255, 0.15); 
-            border-color: rgba(41, 98, 255, 0.4);
-            color: #82b1ff;
-            box-shadow: 0 0 15px rgba(41, 98, 255, 0.1);
-        }
-        .tag-neon-red { 
-            background: rgba(242, 54, 69, 0.15); 
-            border-color: rgba(242, 54, 69, 0.4);
-            color: #ff8a80;
-            box-shadow: 0 0 15px rgba(242, 54, 69, 0.1);
-        }
-        .tag-neon-purple { 
-            background: rgba(123, 31, 162, 0.15); 
-            border-color: rgba(123, 31, 162, 0.4);
-            color: #ea80fc;
-            box-shadow: 0 0 15px rgba(123, 31, 162, 0.1);
-        }
-        .tag-neon-gold { 
-            background: rgba(255, 179, 0, 0.15); 
-            border-color: rgba(255, 179, 0, 0.4);
-            color: #ffe57f;
-            box-shadow: 0 0 15px rgba(255, 179, 0, 0.1);
-        }
+        /* 标签配色方案 */
+        .tag-neon-blue { background: rgba(41, 98, 255, 0.15); border-color: rgba(41, 98, 255, 0.4); color: #82b1ff; box-shadow: 0 0 15px rgba(41, 98, 255, 0.1); }
+        .tag-neon-red { background: rgba(242, 54, 69, 0.15); border-color: rgba(242, 54, 69, 0.4); color: #ff8a80; box-shadow: 0 0 15px rgba(242, 54, 69, 0.1); }
+        .tag-neon-purple { background: rgba(123, 31, 162, 0.15); border-color: rgba(123, 31, 162, 0.4); color: #ea80fc; box-shadow: 0 0 15px rgba(123, 31, 162, 0.1); }
+        .tag-neon-gold { background: rgba(255, 179, 0, 0.15); border-color: rgba(255, 179, 0, 0.4); color: #ffe57f; box-shadow: 0 0 15px rgba(255, 179, 0, 0.1); }
+        
+        /* 新增：危险警告色 */
+        .tag-neon-danger { background: rgba(255, 61, 0, 0.2); border-color: rgba(255, 61, 0, 0.6); color: #ff9e80; box-shadow: 0 0 15px rgba(255, 61, 0, 0.2); animation: pulse 2s infinite; }
 
-        /* 卡片内容区 */
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; border-color: #ff3d00; } 100% { opacity: 0.8; } }
+
         .chart-area { 
-            height: 200px; /* 给K线图足够空间 */
+            height: 200px;
             background: linear-gradient(180deg, #151518, #101012); 
             border-bottom: 1px solid #222; 
-            padding-top: 40px; /* 避开悬浮标签 */
+            padding-top: 40px;
         }
         .gauge-area { 
             flex-grow: 1; 
             background: var(--card-bg); 
             position: relative;
-            /* 确保仪表盘垂直居中 */
             display: flex;
             flex-direction: column;
         }
 
         @media (max-width: 1200px) {
             .main-layout { grid-template-columns: 1fr; display: block; }
-            .sidebar-container { height: auto; margin-bottom: 30px; overflow-y: visible; }
+            .sidebar-container { height: 600px; margin-bottom: 30px; overflow-y: visible; }
             .panel-card { margin-bottom: 20px; }
         }
 
@@ -317,11 +295,11 @@
 
 <nav class="navbar">
     <div class="nav-brand">
-        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6
+        HENRY'S <span style="color:var(--accent-color)">ALPHA</span> V6.1
     </div>
     <div class="nav-links">
-        <a href="#sec-quantum" class="nav-btn">⚛️ 量子</a>
         <a href="#sec-space" class="nav-btn">🌌 太空</a>
+        <a href="#sec-risk" class="nav-btn" style="color:#ff9e80">🔥 搏杀</a>
         <a href="#sec-leverage" class="nav-btn" style="color:#ff8a80">🎰 杠杆</a>
         <a href="#sec-crypto" class="nav-btn" style="color:#ffe57f">🪙 币圈</a>
         <a href="#sec-tech" class="nav-btn">🚀 科技</a>
@@ -331,20 +309,7 @@
 <div class="main-layout">
     
     <div class="sidebar-container">
-        <div class="panel-card" style="height: 400px; flex-shrink: 0;">
-            <div class="panel-header">📅 财经日历 (Calendar)</div>
-            <div class="tradingview-widget-container" style="height:100%;width:100%">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-                {
-                "width": "100%", "height": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_CN", 
-                "importanceFilter": "-1,0,1", "currencyFilter": "USD"
-                }
-                </script>
-            </div>
-        </div>
-
-        <div class="panel-card" style="height: 600px; flex-shrink: 0;">
+        <div class="panel-card" style="flex: 1; min-height: 500px;">
             <div class="panel-header">📰 市场情报 (NASDAQ 100)</div>
             <div class="tradingview-widget-container" style="height:100%;width:100%">
                 <div class="tradingview-widget-container__widget"></div>
@@ -390,6 +355,44 @@
             </div>
         </div>
 
+        <div id="sec-space" class="section-title">🌌 太空经济 (Space)<div class="section-line"></div></div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">ASTS 卫星</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ASTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ASTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">RKLB 争二</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:RKLB","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:RKLB","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">LUNR 登月</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:LUNR","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:LUNR","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+        </div>
+
+        <div id="sec-risk" class="section-title">🔥 高胜赔博弈 (High Risk High Reward)<div class="section-line"></div></div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-danger">SMCI 暴走</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:SMCI","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:SMCI","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-danger">TSLA 妖王</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:TSLA","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:TSLA","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+            <div class="stock-card">
+                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">APP 妖股</div></div>
+                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:APP","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
+                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:APP","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
+            </div>
+        </div>
+
         <div id="sec-quantum" class="section-title">⚛️ 量子计算 (Quantum)<div class="section-line"></div></div>
         <div class="stock-grid">
             <div class="stock-card">
@@ -406,15 +409,6 @@
                 <div class="card-header-floating"><div class="modern-badge tag-neon-purple">OKLO 核能AI</div></div>
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NYSE:OKLO","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NYSE:OKLO","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
-        </div>
-
-        <div id="sec-space" class="section-title">🌌 太空经济 (Space)<div class="section-line"></div></div>
-        <div class="stock-grid">
-            <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">ASTS 卫星</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:ASTS","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:ASTS","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
         </div>
 
@@ -463,11 +457,6 @@
                 <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:PLTR","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
                 <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:PLTR","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
             </div>
-             <div class="stock-card">
-                <div class="card-header-floating"><div class="modern-badge tag-neon-blue">APP 妖股</div></div>
-                <div class="chart-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol":"NASDAQ:APP","width":"100%","height":"100%","locale":"zh_CN","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true}</script></div></div>
-                <div class="gauge-area"><div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{"interval":"1D","width":"100%","isTransparent":true,"height":"100%","symbol":"NASDAQ:APP","showIntervalTabs":false,"displayMode":"single","locale":"zh_CN","colorTheme":"dark"}</script></div></div>
-            </div>
         </div>
 
     </div>
@@ -478,24 +467,19 @@
         const now = new Date();
         const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         
-        // 1. 获取标准时间
         const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
         
-        // 2. 获取日期
         const dateString = now.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
         
-        // 3. 获取时区 (动态获取当前系统时区，如 EST, CST, GMT+8)
         const timeZoneName = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' })
             .formatToParts(now)
             .find(part => part.type === 'timeZoneName')
             .value;
 
-        // 4. 更新显示
         document.getElementById('clock-time').textContent = timeString;
         document.getElementById('clock-date').textContent = `${dateString} | ${days[now.getDay()]} | ${timeZoneName}`;
     }
     
-    // 初始化并开始计时
     setInterval(updateClock, 1000);
     updateClock();
 </script>
